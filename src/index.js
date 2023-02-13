@@ -1,29 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import { createRoot } from 'react-dom/client';
+import Routines from './api/routines';
+import Header from './components/header'
 
-const App = ()=> {
-  const [ routines, setRoutines ] = useState([]);
-  useEffect(() => {
-  fetch('http://fitnesstrac-kr.herokuapp.com/api/routines')
-  .then(( response => response.json()))
-  .then( routines => setRoutines(routines))
-  }, []);
+
+const App = () => {
   return (
-    <div>
-      <h1>Fitness Tracker</h1>
-      <h2>Routines({routines.length})</h2>
-      <ul>
-        {
-          routines.map( routine => {
-            return(
-              <li key={ routine.id} >
-                {routine.name}({routine.activities.length})
-              </li>
-            )
-          })
-        }
-      </ul>
-    </div>
+    <div className="container">
+    <nav className="navbar">
+     
+   </nav>  
+   <section>
+    <Header />
+    <Routines />
+   </section>
+   <article>
+
+   </article>
+  </div>
   );
 };
 

@@ -1,14 +1,14 @@
 import React from 'react';
 
 
-const Header = ()=>{
+const Home = ()=>{
     return (
-    <div id="title">
+    <div id="HomePage">
      <h1>
-      FITNESS TRACKER
+      HOME
     </h1>
     </div>
  
     )
     }
-export default Header;
+export default Home;
