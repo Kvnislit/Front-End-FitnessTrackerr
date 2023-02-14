@@ -129,9 +129,13 @@ title{
   font-size: xx-large;
 }
 /*========== Routine name click ==========*/
-li h2 {
-color: #f5f5f5;}
+.routine-name {
+  color: #333;
+  text-decoration: none;
+}
 
-li h2:hover {
-  cursor: url('cursor.png');
+.routine-name:hover {
+  cursor: url('/assets/cursor.png'), auto;
+  color: #fff;
+  cursor: pointer;
 }

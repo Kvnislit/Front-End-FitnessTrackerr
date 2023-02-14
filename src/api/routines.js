@@ -21,7 +21,7 @@ export const Routines = () => {
         {routines.map(routine => {
           return (
             <li key={routine.id}>
-              <h2 onClick={() => routineTitle(routine.id)}>{routine.name}</h2>
+              <h2 className="routine-name" onClick={() => routineTitle(routine.id)}>{routine.name}</h2>
               <p>{routine.goal}</p>
               <p><u>Name:</u>{routine.creatorName}</p>
             </li>
