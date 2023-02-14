@@ -7,9 +7,7 @@ import Header from './components/header'
 const App = () => {
   return (
     <div className="container">
-    <nav className="navbar">
-     
-   </nav>  
+      
    <section>
     <Header />
     <Routines />
@@ -22,5 +20,4 @@ const App = () => {
 };
 
 const root = createRoot(document.querySelector('#root'));
-
 root.render(<App />);

@@ -8,6 +8,7 @@ const Routines = ()=> {
     .then( routines => setRoutines(routines))
     }, []);
     return (
+    
       <div>
         <h1>Fitness Tracker</h1>
         <h2>Routines({routines.length})</h2>
@@ -23,6 +24,7 @@ const Routines = ()=> {
           }
         </ul>
       </div>
+      
     );
   };
 
