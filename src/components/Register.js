@@ -4,7 +4,6 @@ const  Register=() => {
 const [registerUsername, setRegisterUsername] = useState('');
 const [registerPassword, setRegisterPassword] = useState('');
 
-// https://fitnesstrac-kr.herokuapp.com/docs/
 
 const register =(ev)=>{
     ev.preventDefault();
@@ -14,17 +13,12 @@ fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    user: {
       username: registerUsername,
       password: registerPassword
-    }
   })
   })
   .then(response => response.json())
   .then(result => {
-    if(!result.success){
-      throw result.error;
-    }
     console.log(result);
   })
   .catch(err => console.log(err));

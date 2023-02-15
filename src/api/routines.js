@@ -9,9 +9,9 @@ export const Routines = () => {
       .then(routines => setRoutines(routines));
   }, []);
 
-  // const routineTitle = (id) => {
-  //   window.location.href = `/details`;
-  // };
+  const routineTitle = (id) => {
+    window.location.href = `/details`;
+  };
 
   return (
     <div id="routine-container">

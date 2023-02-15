@@ -13,10 +13,8 @@ const Login = (props) =>{
                 'Content-type':'application/json'
             },
             body: JSON.stringify({
-                user: {
                     username: loginUsername,
                     password: loginPassword
-                }
             })
         })
         .then(response => response.json())
