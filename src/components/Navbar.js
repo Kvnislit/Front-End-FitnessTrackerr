@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const NavBar = () => {
+const NavBar = ({user, logout}) => {
   useEffect(() => {
     const menu = document.querySelector('#menu-icon');
     const navbar = document.querySelector('.navbar');
@@ -38,8 +38,16 @@ const NavBar = () => {
         </nav>
 
         <div className="header-btn">
-          <Link to="/Register" className="sign-up">Sign Up</Link>
-          <Link to="/login" className="in">Login</Link>
+        {user.id ? (
+            <div className='welcome'>
+              Welcome {user.username} <button onClick={logout}>Logout</button>
+            </div>
+          ) : (
+            <>
+              <Link to="/Register" className="sign-up">Sign Up</Link>
+              <Link to="/login" className="in">Login</Link>
+            </>
+          )}
         </div>
       </header>
     </section>

@@ -4,8 +4,9 @@ import { Routines } from './api/routines';
 import NavBar from './components/Navbar'
 import { Activities } from './components/Activities';
 import Register from './components/Register';
-import Create from './components/Create';
 import Login from './components/Login';
+import CreateRoutine from './components/CreateRoutine';
+import UpdateRoutines from './components/UpdateRoutines';
 
 const App = () => {
   const [routines, setRoutines] = useState([]);
@@ -46,24 +47,27 @@ const App = () => {
   useEffect(() => {
     exchangeTokenForUser();
     fetchRoutines();
-  }, [token]);
+  }, []);
 
-  const logout = () =>{
+  const logout = () => {
     window.localStorage.removeItem('token');
     setUser({});
   }
 
+
   return (
     <BrowserRouter>
-      <NavBar />
-      <Create token={token} routines={routines} setRoutines={setRoutines}/>
+      <NavBar user={user} logout={logout} />
+      <CreateRoutine />
+      <UpdateRoutines />
       <Routes>
         <Route path="/" element={<Routines />} />
-        <Route path="/login" 
-        element={<Login exchangeTokenForUser={exchangeTokenForUser} />} />
+        <Route path="/login"
+          element={<Login exchangeTokenForUser={exchangeTokenForUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/routines" element={<Routines />} />
-        <Route path="/activities" element={<Activities />} />
+        <Route path="/Activities" element={<Activities />} />
+        <Route path="/CreateRoutine" element={<CreateRoutine token={token} routines={routines} setRoutines={setRoutines} />} />
       </Routes>
     </BrowserRouter>
   );

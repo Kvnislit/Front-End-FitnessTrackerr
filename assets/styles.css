@@ -139,3 +139,10 @@ title{
   color: #fff;
   cursor: pointer;
 }
+/*========== Routine name click ==========*/
+.singleRoutine {
+  border: 5px solid black
+}
+.myRoutine {
+  background-color: #ffa323;
+}

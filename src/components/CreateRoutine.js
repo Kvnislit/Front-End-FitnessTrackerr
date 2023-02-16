@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
 const CreateRoutine = ({ token }) => {
-   console.log(token)
-   
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
   
