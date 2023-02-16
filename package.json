@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "path-browserify": "^1.0.1"
+    "path-browserify": "^1.0.1",
+    "react-router-dom": "^6.8.1",
+    "switch": "^0.0.0"
   }
 }

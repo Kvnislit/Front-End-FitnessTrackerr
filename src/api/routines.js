@@ -9,9 +9,6 @@ export const Routines = () => {
       .then(routines => setRoutines(routines));
   }, []);
 
-  const routineTitle = (id) => {
-    window.location.href = `/details`;
-  };
 
   return (
     <div id="routine-container">
@@ -21,7 +18,7 @@ export const Routines = () => {
         {routines.map(routine => {
           return (
             <li key={routine.id}>
-              <h2 className="routine-name" onClick={() => routineTitle(routine.id)}>{routine.name}</h2>
+              <h2 className="routine-name" id={routine.id}>{routine.name}</h2>
               <p>{routine.goal}</p>
               <p><u>Name:</u>{routine.creatorName}</p>
             </li>
