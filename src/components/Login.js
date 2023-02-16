@@ -1,48 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 const Login = (props) => {
+    const exchangeTokenForUser = props.exchangeTokenForUser
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [routines, setRoutines] = useState([]);
-  const [user, setUser] = useState({});
-  const [token, setToken] = useState(null);
 
-  const fetchRoutines = () => {
-    fetch("http://fitnesstrac-kr.herokuapp.com/api/routines", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setRoutines(data);
-      })
-      .catch((error) => console.error(error));
-  };
-
-  const exchangeTokenForUser = () => {
-    const token = window.localStorage.getItem("token");
-    setToken(token);
-    if (token) {
-      fetch("http://fitnesstrac-kr.herokuapp.com/api/users/me", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUser(data);
-        })
-        .catch((error) => console.log(error));
-    }
-  };
-
-  useEffect(() => {
-    exchangeTokenForUser();
-    fetchRoutines();
-  }, []);
 
   const login = (ev) => {
     ev.preventDefault();
@@ -75,7 +37,6 @@ const Login = (props) => {
       })
       .catch((error) => console.log(error));
   };
-
   return (
     <form className="LoginBox" onSubmit={login}>
       <h3>Login</h3>
