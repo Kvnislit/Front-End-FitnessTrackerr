@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
-  // Activities,
+  Activities,
   CreateRoutines,
   Home,
   Login,
@@ -43,14 +43,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <NavBar user={user} logout={handleLogout} />
-      <CreateRoutines token={token} setRoutines={setRoutines}/>
-      <UpdateRoutines/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login exchangeTokenForUser={exchangeTokenForUser} setUser={setUser} setToken={setToken} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/routines" element={<Routines />} />
-        {/* <Route path="/activities" element={<Activities />} /> */}
+        <Route path="/routines" element={<Routines token={token} routines={routines} setRoutines={setRoutines} />} />
+        <Route path="/activities" element={<Activities />} />
         <Route path="/UpdateRoutines" element={<UpdateRoutines routines={routines} setRoutines={setRoutines} />} />
       </Routes>
     </BrowserRouter>

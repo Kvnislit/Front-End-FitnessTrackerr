@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const UpdateRoutines = ({ token, routines, setRoutines, routineId, setRoutineId }) => {
+const UpdateRoutines = ({  routines, setRoutines, routineId, setRoutineId }) => {
   const [goal, setGoal] = useState("");
   const [name, setName] = useState("");
 
