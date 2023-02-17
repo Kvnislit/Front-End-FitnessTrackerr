@@ -1,73 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Routines } from './api/routines';
-import NavBar from './components/Navbar'
-import { Activities } from './components/Activities';
-import Register from './components/Register';
-import Login from './components/Login';
-import CreateRoutine from './components/CreateRoutine';
-import UpdateRoutines from './components/UpdateRoutines';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  // Activities,
+  CreateRoutines,
+  Home,
+  Login,
+  NavBar,
+  Register,
+  Routines,
+  UpdateRoutines,
+} from "./components";
+import { fetchActivities, fetchRoutines, exchangeTokenForUser } from "./api";
 
 const App = () => {
   const [routines, setRoutines] = useState([]);
+  const [activities, setActivities] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
 
-  const fetchRoutines = () => {
-    fetch("http://fitnesstrac-kr.herokuapp.com/api/routines", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setRoutines(data);
-      })
-      .catch((error) => console.error(error));
-  };
-
-  const exchangeTokenForUser = () => {
+  useEffect(() => {
     const token = window.localStorage.getItem("token");
     setToken(token);
     if (token) {
-      fetch("http://fitnesstrac-kr.herokuapp.com/api/users/me", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUser(data);
-        })
-        .catch((error) => console.log(error));
+      exchangeTokenForUser(setToken, setUser);
     }
-  };
 
-  useEffect(() => {
-    exchangeTokenForUser();
-    fetchRoutines();
+    fetchRoutines(token)
+      .then((routines) => setRoutines(routines))
+      .catch((error) => console.error("Failed to fetch routines:", error));
+
+    fetchActivities(token)
+      .then((activities) => setActivities(activities))
+      .catch((error) => console.error("Failed to fetch activities:", error));
   }, []);
 
-  const logout = () => {
+
+  const handleLogout = () => {
     window.localStorage.removeItem('token');
     setUser({});
   }
 
-
   return (
     <BrowserRouter>
-      <NavBar user={user} logout={logout} />
-      <CreateRoutine />
-      <UpdateRoutines />
+      <NavBar user={user} logout={handleLogout} />
+      <CreateRoutines token={token} setRoutines={setRoutines}/>
+      <UpdateRoutines/>
       <Routes>
-        <Route path="/" element={<Routines />} />
-        <Route path="/login"
-          element={<Login exchangeTokenForUser={exchangeTokenForUser} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login exchangeTokenForUser={exchangeTokenForUser} setUser={setUser} setToken={setToken} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/routines" element={<Routines />} />
-        <Route path="/Activities" element={<Activities />} />
-        <Route path="/CreateRoutine" element={<CreateRoutine token={token} routines={routines} setRoutines={setRoutines} />} />
+        {/* <Route path="/activities" element={<Activities />} /> */}
+        <Route path="/UpdateRoutines" element={<UpdateRoutines routines={routines} setRoutines={setRoutines} />} />
       </Routes>
     </BrowserRouter>
   );

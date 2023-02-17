@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { loginUser } from "../api/index";
 
 const Login = (props) => {
-    const exchangeTokenForUser = props.exchangeTokenForUser
+  const exchangeTokenForUser = props.exchangeTokenForUser;
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-
   const login = (ev) => {
     ev.preventDefault();
-    fetch("http://fitnesstrac-kr.herokuapp.com/api/users/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        username: loginUsername,
-        password: loginPassword,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const token = data.token;
-        window.localStorage.setItem("token", token);
-        exchangeTokenForUser();
+    loginUser(loginUsername, loginPassword)
+      .then((token) => {
+        exchangeTokenForUser(props.setToken, props.setUser);
         fetch("http://fitnesstrac-kr.herokuapp.com/api/users/me", {
           headers: {
             "Content-Type": "application/json",
@@ -37,6 +25,7 @@ const Login = (props) => {
       })
       .catch((error) => console.log(error));
   };
+
   return (
     <form className="LoginBox" onSubmit={login}>
       <h3>Login</h3>

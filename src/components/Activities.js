@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { fetchActivities } from "../api";
 
 export const Activities = () => {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch(`http://fitnesstrac-kr.herokuapp.com/api/activities`)
-      .then(response => response.json())
-      .then(activities => setActivities(activities));
+    fetchActivities()
+      .then(data => setActivities(data))
+      .catch(error => console.error(error));
   }, []);
 
   return (
