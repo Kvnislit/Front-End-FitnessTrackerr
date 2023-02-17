@@ -32,6 +32,7 @@ const NavBar = ({user, logout}) => {
         <div className="bx bx-menu" id="menu-icon"></div>
 
         <nav className="navbar">
+          <li><Link to='/Home'>Home</Link></li>
           <li><Link to='/Routines'>Routines</Link></li>
           <li><Link to='/Activities'>Activities</Link></li>
           <li><Link to='/Register'>Sign up</Link></li>

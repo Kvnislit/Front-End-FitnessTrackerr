@@ -46,7 +46,7 @@ const App = () => {
       <CreateRoutines token={token} setRoutines={setRoutines}/>
       <UpdateRoutines/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/login" element={<Login exchangeTokenForUser={exchangeTokenForUser} setUser={setUser} setToken={setToken} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/routines" element={<Routines />} />
