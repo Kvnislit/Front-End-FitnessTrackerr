@@ -28,20 +28,22 @@ const Login = (props) => {
 
   return (
     <form className="LoginBox" onSubmit={login}>
-      <h3>Login</h3>
+      <h1 className="LoginIn">Login</h1>
       <input
+      className="LoginIn"
         placeholder="username"
         value={loginUsername}
         onChange={(ev) => setLoginUsername(ev.target.value)}
       />
 
       <input
+      className="LoginIn"
         type="password"
         value={loginPassword}
         onChange={(ev) => setLoginPassword(ev.target.value)}
       />
 
-      <button>Login</button>
+      <button className="LoginIn">Login</button>
     </form>
   );
 };

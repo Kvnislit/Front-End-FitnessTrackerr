@@ -21,7 +21,7 @@ export default function Routines({token}) {
       <ul>
         {routines.map(routine => {
           return (
-            <li key={routine.id}>
+            <li key={routine.id} className="Ractivities">
               <h2 className="routine-name" id={routine.id}>{routine.name}</h2>
               <p>{routine.goal}</p>
               <p><u>Name:</u>{routine.creatorName}</p>

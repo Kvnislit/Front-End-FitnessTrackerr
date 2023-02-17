@@ -17,7 +17,7 @@ export default function Activities () {
       <ul>
         {activities.map(activity => {
           return (
-            <li key={activity.id}>
+            <li key={activity.id} className="Ractivities">
               <h3>{activity.name}</h3>
               <p>{activity.description}</p>
               <p>Duration: {activity.duration}</p>

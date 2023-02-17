@@ -17,17 +17,20 @@ const Register = () => {
 
   return (
     <form className="register" onSubmit={register}>
+      <h1 className="registerIn">Please register here!</h1>
       <input
+      className="registerIn"
         placeholder="username"
         value={registerUsername}
         onChange={ev => setRegisterUsername(ev.target.value)} />
 
       <input
+      className="registerIn"
         placeholder="password"
         value={registerPassword}
         onChange={ev => setRegisterPassword(ev.target.value)} />
 
-      <button>Register</button>
+      <button className="registerIn">Register</button>
     </form>
   )
 };

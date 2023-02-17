@@ -32,10 +32,10 @@ const NavBar = ({user, logout}) => {
         <div className="bx bx-menu" id="menu-icon"></div>
 
         <nav className="navbar">
-          <li><Link to='/Home'>Home</Link></li>
-          <li><Link to='/Routines'>Routines</Link></li>
-          <li><Link to='/Activities'>Activities</Link></li>
-          <li><Link to='/Register'>Sign up</Link></li>
+          <li><Link to='/Home' className="navb">Home</Link></li>
+          <li><Link to='/Routines' className="navb">Routines</Link></li>
+          <li><Link to='/Activities'className="navb">Activities</Link></li>
+          <li><Link to='/Register' className="navb">Sign up</Link></li>
         </nav>
 
         <div className="header-btn">
