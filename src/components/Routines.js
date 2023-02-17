@@ -9,8 +9,9 @@ export default function Routines({token}) {
   useEffect(() => {
     fetchRoutines()
       .then(routines => setRoutines(routines))
+      
       .catch(error => console.error(error));
-  }, []);
+    }, []);
 
   return (
     <div id="routine-container">
@@ -20,9 +21,11 @@ export default function Routines({token}) {
       <h2>({routines.length})</h2>
       <ul>
         {routines.map(routine => {
+            console.log(routine)
           return (
-            <li key={routine.id}>
-              <h2 className="routine-name" id={routine.id}>{routine.name}</h2>
+            <li key={routine.id} 
+            className={routine.isPublic ? "singleRoutine  myRoutine" : "singleRoutine" }>
+              <h2 className="routine-name">{routine.name}</h2>
               <p>{routine.goal}</p>
               <p><u>Name:</u>{routine.creatorName}</p>
             </li>

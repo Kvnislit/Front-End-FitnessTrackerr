@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const UpdateRoutines = ({  routines, setRoutines, routineId, setRoutineId }) => {
   const [goal, setGoal] = useState("");
   const [name, setName] = useState("");
-
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`, {
@@ -13,6 +12,7 @@ const UpdateRoutines = ({  routines, setRoutines, routineId, setRoutineId }) => 
         goal: goal,
       })
     });
+    console.log(goal)
     const data = await response.json();
     if (data && data.name && data.goal) {
       const newRoutine = routines.map(routine => {

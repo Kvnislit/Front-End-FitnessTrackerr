@@ -141,8 +141,8 @@ title{
 }
 /*========== Routine name click ==========*/
 .singleRoutine {
-  border: 5px solid black
+  border: 1px solid black
 }
 .myRoutine {
-  background-color: #ffa323;
-}
+  background-color: cornsilk;
+} 
