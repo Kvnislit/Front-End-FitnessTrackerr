@@ -1,45 +1,37 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
+import { registerUser } from '../api';
 
-const  Register=() => {
-const [registerUsername, setRegisterUsername] = useState('');
-const [registerPassword, setRegisterPassword] = useState('');
+const Register = () => {
+  const [registerUsername, setRegisterUsername] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
 
-
-const register =(ev)=>{
+  const register = async (ev) => {
     ev.preventDefault();
-fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
-  method: "POST",
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-      username: registerUsername,
-      password: registerPassword
-  })
-  })
-  .then(response => response.json())
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => console.log(err));
+    try {
+      const result = await registerUser(registerUsername, registerPassword);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-return (
-<form className="register"onSubmit= { register }>
-<input 
-  placeholder="username" 
-  value={ registerUsername }
-  onChange ={ ev=> setRegisterUsername(ev.target.value)}/>
+  return (
+    <form className="register" onSubmit={register}>
+      <input
+        placeholder="username"
+        value={registerUsername}
+        onChange={ev => setRegisterUsername(ev.target.value)} />
 
-<input 
-  placeholder="password"
-  value={ registerPassword }
-  onChange ={ ev=> setRegisterPassword(ev.target.value)}/>
+      <input
+        placeholder="password"
+        value={registerPassword}
+        onChange={ev => setRegisterPassword(ev.target.value)} />
 
-<button>Register</button>
-</form>
-)
+      <button>Register</button>
+    </form>
+  )
 };
+
 export default Register;
 
 

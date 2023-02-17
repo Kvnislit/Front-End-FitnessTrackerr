@@ -1,7 +1,9 @@
 import { fetchRoutines } from '../api';
 import React, { useState, useEffect } from "react";
+import { CreateRoutines, UpdateRoutines} from '../components';
 
-export default function Routines() {
+
+export default function Routines({token}) {
   const [routines, setRoutines] = useState([]);
 
   useEffect(() => {
@@ -12,6 +14,9 @@ export default function Routines() {
 
   return (
     <div id="routine-container">
+        <title>Routines</title>
+        <CreateRoutines token={token} setRoutines={setRoutines} />
+      <UpdateRoutines routines={routines} setRoutines={setRoutines} />
       <h2>({routines.length})</h2>
       <ul>
         {routines.map(routine => {

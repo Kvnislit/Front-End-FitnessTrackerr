@@ -8,10 +8,10 @@ export const fetchRoutines = async () => {
   return data;
 };
 
-export const fetchActivities = async () => {
+export async function fetchActivities() {
   const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/activities`);
   return await response.json();
-};
+}
 
 
 export const exchangeTokenForUser = (setToken, setUser) => {
@@ -65,3 +65,20 @@ export const postRoutine = async (token, name, goal) => {
   const data = await response.json();
   return data;
 };
+
+export const registerUser = async (username, password) => {
+  try {
+    const response = await fetch("https://fitnesstrac-kr.herokuapp.com/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ username, password })
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

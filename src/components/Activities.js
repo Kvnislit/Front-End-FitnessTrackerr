@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchActivities } from "../api";
 
-export const Activities = () => {
+export default function Activities () {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
