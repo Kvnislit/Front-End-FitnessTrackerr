@@ -9,7 +9,7 @@ import {
   Routines,
   UpdateRoutines,
 } from "./components";
-import { fetchActivities, fetchRoutines, exchangeTokenForUser } from "./api";
+import { fetchActivities, fetchAllRoutines, exchangeTokenForUser } from "./api";
 
 const App = () => {
   const [routines, setRoutines] = useState([]);
@@ -24,7 +24,7 @@ const App = () => {
       exchangeTokenForUser(setToken, setUser);
     }
 
-    fetchRoutines(token)
+    fetchAllRoutines(token)
       .then((routines) => setRoutines(routines))
       .catch((error) => console.error("Failed to fetch routines:", error));
 

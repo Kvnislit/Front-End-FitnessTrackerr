@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { CreateRoutines, UpdateRoutines } from '../components';
-import { fetchRoutines, exchangeTokenForUser } from '../api';
+import { fetchAllRoutines, exchangeTokenForUser } from '../api';
 
 
 export default function Routines() {
@@ -10,7 +10,7 @@ export default function Routines() {
   const [routineId, setRoutineId] = useState(null);
 
   useEffect(() => {
-    fetchRoutines()
+    fetchAllRoutines()
       .then(routines => setRoutines(routines))
       .catch(error => console.error(error));
 
@@ -68,6 +68,3 @@ export default function Routines() {
     </div>
   );
 }
-
-
-

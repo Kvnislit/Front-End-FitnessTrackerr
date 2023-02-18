@@ -17,7 +17,7 @@ const UpdateRoutines = ({ routines, setRoutines, token, user, routineId, setRout
       body: JSON.stringify({
         name: name,
         goal: goal,
-        isPublic: true
+        isPublic: null
       })
     });
     if (!response.ok) {
