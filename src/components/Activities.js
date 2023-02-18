@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchActivities } from "../api";
+import { fetchActivities, attachActivityToRoutine } from "../api";
 
 export default function Activities () {
   const [activities, setActivities] = useState([]);
@@ -9,6 +9,12 @@ export default function Activities () {
       .then(data => setActivities(data))
       .catch(error => console.error(error));
   }, []);
+
+  const handleAddActivity = (activityId, count, duration) => {
+    attachActivityToRoutine(routineId, activityId, count, duration, token)
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+  };
 
   return (
     <div id="routine-details-container">
@@ -22,6 +28,7 @@ export default function Activities () {
               <p>{activity.description}</p>
               <p>Duration: {activity.duration}</p>
               <p>Count: {activity.count}</p>
+              <button onClick={() => handleAddActivity(activity.id, 1, activity.duration)}>Add to Routine</button>
             </li>
           );
         })}

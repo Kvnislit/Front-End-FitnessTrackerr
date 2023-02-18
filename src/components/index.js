@@ -5,4 +5,5 @@ export { default as NavBar } from './NavBar';
 export { default as Activities } from './Activities';
 export { default as Home } from "./Home"
 export { default as Register } from './Register';
-export { default as UpdateRoutines } from "./UpdateRoutines";
+export { default as UpdateRoutines } from "./UpdateRoutines"
+export {default as UserRoutines } from "./UserRoutines" 

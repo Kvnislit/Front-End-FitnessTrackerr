@@ -36,6 +36,7 @@ const NavBar = ({user, logout}) => {
           <li><Link to='/Routines'>Routines</Link></li>
           <li><Link to='/Activities'>Activities</Link></li>
           <li><Link to='/Register'>Sign up</Link></li>
+          <li><Link to='/UserRoutine'>User Routines</Link></li>
         </nav>
 
         <div className="header-btn">

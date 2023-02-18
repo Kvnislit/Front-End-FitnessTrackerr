@@ -1,22 +1,23 @@
 import React, {useState, useEffect} from 'react'
-import { CreateRoutines, UpdateRoutines } from '../components';
+import { CreateRoutines, UpdateRoutines, UserRoutines } from '../components';
 import { fetchAllRoutines, exchangeTokenForUser } from '../api';
-
 
 export default function Routines() {
   const [routines, setRoutines] = useState([]);
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(null);
   const [routineId, setRoutineId] = useState(null);
-
+  
   useEffect(() => {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      exchangeTokenForUser(setToken, setUser);
+    }
     fetchAllRoutines()
-      .then(routines => setRoutines(routines))
-      .catch(error => console.error(error));
-
-    exchangeTokenForUser(setToken, setUser);
-  }, [setToken]);
-
+      .then((data) => setRoutines(data))
+      .catch((error) => console.error(error));
+  }, []);
+  
   const handleDelete = async (postIdToDelete) => {
     if (window.confirm("Are you sure you want to delete this routine?")) {
       try {
@@ -44,7 +45,9 @@ export default function Routines() {
     <div id="routine-container">
       <title>Routines</title>
       <CreateRoutines token={token} setRoutines={setRoutines} />
-      <UpdateRoutines routines={routines} setRoutines={setRoutines} user={user} token={token} setRoutineId={setRoutineId} routineId={routineId} handleDelete={handleDelete} />
+      <UpdateRoutines routines={routines} setRoutines={setRoutines} user={user} token={token} 
+      setRoutineId={setRoutineId} routineId={routineId} handleDelete={handleDelete} />
+      <UserRoutines user={user} routines={routines} />
       <h2>({routines.length})</h2>
       <ul>
         {routines.map((routine) => {

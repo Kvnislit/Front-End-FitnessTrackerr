@@ -105,15 +105,15 @@ export const registerUser = async (username, password) => {
   }
 };
 
-export const fetchAllPublicRoutinesForAUser = async (username, token) => {
+export const fetchAllPublicRoutinesForAUser = async (username) => {
   try {
-    const response = await fetch(`${BASE_URL}/users/routines`, {
+    const response = await fetch(`${BASE_URL}/users/${username}/routines`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
       },
     });
     const data = await response.json();
+    console.log(data)
     return data;
   } catch (error) {
     console.log(error);
@@ -137,3 +137,26 @@ export const deleteRoutine = async (routineId, token) => {
     console.error(error);
   }
 };
+
+export const attachActivityToRoutine = async (routineId, token, activityId, count, duration) => {
+  try {
+    const response = await fetch(`${BASE_URL}/routines/${routineId}/activities`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        activityId: activityId,
+        count: count,
+        duration: duration,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new Error(`Failed to attach activity to routine: ${error}`);
+  }
+};
+
