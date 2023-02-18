@@ -19,12 +19,14 @@ const CreateRoutine = ({ token }) => {
     <form className='update' onSubmit={handleSubmit}>
       <h2>Create Routine</h2>
       <input
+        className="input-btn"
         type='text'
         placeholder='edit name'
         value={name}
         onChange={(ev) => setName(ev.target.value)}
       />
       <input
+        className="input-btn"
         type='text'
         placeholder='edit goal'
         value={goal}

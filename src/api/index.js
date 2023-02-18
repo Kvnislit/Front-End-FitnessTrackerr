@@ -1,3 +1,5 @@
+
+
 export const fetchRoutines = async () => {
   const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
     headers: {
@@ -82,3 +84,35 @@ export const registerUser = async (username, password) => {
     throw error;
   }
 }
+
+export const fetchAllPublicRoutinesForAUser = async (username, token) => {
+  try {
+    const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/routines`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+
+};
+
+export const deleteRoutine = async (routineId, token) => {
+  try {
+    const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

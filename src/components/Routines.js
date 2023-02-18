@@ -1,33 +1,66 @@
-import { fetchRoutines } from '../api';
-import React, { useState, useEffect } from "react";
-import { CreateRoutines, UpdateRoutines} from '../components';
+import React, {useState, useEffect} from 'react'
+import { CreateRoutines, UpdateRoutines } from '../components';
+import { fetchRoutines, exchangeTokenForUser } from '../api';
 
 
-export default function Routines({token}) {
+export default function Routines() {
   const [routines, setRoutines] = useState([]);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null)
+  const [routineId, setRoutineId] = useState(null);
 
   useEffect(() => {
     fetchRoutines()
       .then(routines => setRoutines(routines))
-      
       .catch(error => console.error(error));
-    }, []);
+
+    exchangeTokenForUser(setToken, setUser);
+  }, [setToken]);
+
+  const handleDelete = async (postIdToDelete) => {
+    if (window.confirm("Are you sure you want to delete this routine?")) {
+      try {
+        const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${postIdToDelete}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        const data = await response.json();
+        console.log('data:', data)
+        if (data.success) {
+          setRoutines(routines.filter(routine => routine.id !== postIdToDelete));
+        } else {
+          console.error(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
 
   return (
     <div id="routine-container">
-        <title>Routines</title>
-        <CreateRoutines token={token} setRoutines={setRoutines} />
-      <UpdateRoutines routines={routines} setRoutines={setRoutines} />
+      <title>Routines</title>
+      <CreateRoutines token={token} setRoutines={setRoutines} />
+      <UpdateRoutines routines={routines} setRoutines={setRoutines} user={user} token={token} setRoutineId={setRoutineId} routineId={routineId} handleDelete={handleDelete} />
       <h2>({routines.length})</h2>
       <ul>
-        {routines.map(routine => {
-            console.log(routine)
+        {routines.map((routine) => {
+          const className = user && routine.creatorId === user.id ? 'singleRoutine myRoutine' : 'singleRoutine'
+          
           return (
-            <li key={routine.id} 
-            className={routine.isPublic ? "singleRoutine  myRoutine" : "singleRoutine" }>
-              <h2 className="routine-name">{routine.name}</h2>
+            <li key={routine.id} className={className}>
+              <h1>{routine.name}</h1>
               <p>{routine.goal}</p>
               <p><u>Name:</u>{routine.creatorName}</p>
+              {user && routine.creatorId === user.id ? 
+                <>
+                  <button type="button" className="btn btn-outline-primary" onClick={() => setRoutineId(routine.id)}>Edit</button>
+                  <button type="button" className="btn btn-outline-primary" onClick={() => handleDelete(routine.id)}>Delete</button>
+                </> : null
+              }
             </li>
           );
         })}
@@ -35,3 +68,6 @@ export default function Routines({token}) {
     </div>
   );
 }
+
+
+

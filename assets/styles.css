@@ -31,6 +31,7 @@ header{
   justify-content: space-between;
   padding: 35px 15%;
   background: transparent;
+  border: 2px solid black;
 }
 .logo {
   color: #fff;
@@ -144,5 +145,44 @@ title{
   border: 1px solid black
 }
 .myRoutine {
-  background-color: cornsilk;
-} 
+  background-color: #4917ed;
+}
+#HomePage{
+  border: 5px solid black;
+  margin: 20%;
+  padding: 4rem;
+}
+
+#routine-details-container{
+  margin-top: 10%;
+  margin-left: 5%;
+  
+}
+
+
+#routine-container{
+  margin-top: 10%;
+  margin-left: 5%;
+}
+
+.update{
+  margin: 1rem;
+}
+
+.LoginBox{
+  margin: 10%;
+}
+
+.register{
+  margin: 10%;
+}
+
+.registerIn{
+  padding: 1rem;
+  margin: 0.2rem;
+}
+
+.LoginIn{
+  padding: 1rem;
+  margin: 0.2rem;
+}

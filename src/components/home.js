@@ -5,7 +5,7 @@ const Home = ()=>{
     return (
     <div id="HomePage">
      <h1>
-      Welcome 
+      Welcome to FitnessTrac.kr
     </h1>
     </div>
  

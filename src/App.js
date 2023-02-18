@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Activities,
-  CreateRoutines,
   Home,
   Login,
   NavBar,
@@ -49,7 +48,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/routines" element={<Routines token={token} routines={routines} setRoutines={setRoutines} />} />
         <Route path="/activities" element={<Activities />} />
-        <Route path="/UpdateRoutines" element={<UpdateRoutines routines={routines} setRoutines={setRoutines} />} />
+        <Route path="/routines/update" element={<UpdateRoutines routines={routines} setRoutines={setRoutines} user={user} token={token} />} />
       </Routes>
     </BrowserRouter>
   );
