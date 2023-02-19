@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchActivityId } from '../api';
 
 const UpdateActivities = ({ token, activityIds }) => {
+  console.log(token)
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 

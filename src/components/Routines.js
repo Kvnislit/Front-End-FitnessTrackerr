@@ -10,6 +10,7 @@ export default function Routines(activities) {
   const [token, setToken] = useState(null);
   const [routineId, setRoutineId] = useState(null);
   console.log(routineId)
+  console.log(user)
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
@@ -51,7 +52,7 @@ export default function Routines(activities) {
       <CreateRoutines token={token} setRoutines={setRoutines} />
       <UpdateRoutines routines={routines} setRoutines={setRoutines} user={user} token={token} 
       setRoutineId={setRoutineId} routineId={routineId} handleDelete={handleDelete} />
-      <UserRoutines user={user} routines={routines} />
+    
   
       <h2>({routines.length})</h2>
       <ul>
@@ -61,7 +62,7 @@ export default function Routines(activities) {
           return (
             <li key={routine.id} className={className}>
               <h1>{routine.name}</h1>
-              <p>{routine.goal}</p>
+              <p>Goal:{routine.goal}</p>
               <p><u>Name:</u>{routine.creatorName}</p>
               {user && routine.creatorId === user.id ? 
                 <>

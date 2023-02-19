@@ -20,7 +20,7 @@ export default function ActivitiesDisplay({ token , activities, setActivities })
     <div id="routine-details-container">
       <h2>Routine ActivitiesDisplay</h2>
       <CreateActivity token={token}/>
-      <UpdateActivities activityIds={activityIds} setActivities={setActivities} />
+      <UpdateActivities token={token} activityIds={activityIds} setActivities={setActivities} />
       <ul>
         {activities.map((activity) => {
           return (
@@ -28,7 +28,10 @@ export default function ActivitiesDisplay({ token , activities, setActivities })
               <h3>Name:{activity.name}</h3>
               <p>description: {activity.description}</p>
               <button onClick={() => handleEdit(activity.id)}>
-                Edit ActivitiesDisplay
+                Edit
+              </button>
+              <button>
+                Add
               </button>
             </li>
           );
