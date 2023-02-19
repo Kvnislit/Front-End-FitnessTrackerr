@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { postRoutine } from '../api';
+import { postActivity } from '../api';
 
-const CreateRoutine = ({ token }) => {
+const CreateActivity = ({ token }) => {
   const [name, setName] = useState('');
-  const [goal, setGoal] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     try {
-      const data = await postRoutine(token, name, goal);
+      const data = await postActivity(token, name, description);
       console.log('data:', data);
     } catch (error) {
       console.error(error);
@@ -17,7 +17,7 @@ const CreateRoutine = ({ token }) => {
 
   return (
     <form className='update' onSubmit={handleSubmit}>
-      <h2>Create Routine</h2>
+      <h2>Create Activity</h2>
       <input
         className="input-btn"
         type='text'
@@ -28,9 +28,9 @@ const CreateRoutine = ({ token }) => {
       <input
         className="input-btn"
         type='text'
-        placeholder='edit goal'
-        value={goal}
-        onChange={(ev) => setGoal(ev.target.value)}
+        placeholder='edit description'
+        value={description}
+        onChange={(ev) => setDescription(ev.target.value)}
       />
       <button type='submit' className='btn btn-outline-primary'>
         Submit
@@ -39,4 +39,4 @@ const CreateRoutine = ({ token }) => {
   );
 };
 
-export default CreateRoutine;
+export default CreateActivity;

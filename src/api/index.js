@@ -123,44 +123,41 @@ export const fetchAllPublicRoutinesForAUser = async (username) => {
 };
 
 
-
 export const fetchUserId = async (token) => {
   try {
-    const response = await fetch(`${BASE_URL}/routines`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const users = await response.json();
-    const Ids = users.map(user => user.id);
-    console.log(Ids);
-    return Ids;
-  } catch (error) {
-    console.log(error);
-    throw new Error(`Failed to fetch userIDs: ${error}`);
-  }
-};
- 
-export const fetchActivityIds = async (token) => {
-  try {
-    const response = await fetch(`${BASE_URL}/activities`, {
+    const response = await fetch(`${BASE_URL}/users/me`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
     const data = await response.json();
-    console.log(data)
-    const activityIds = data.map((activity) => activity.id);
-
-    return activityIds;
+    const userId = Array.isArray(data) ? data.map(user => user.id) : [data.id];
+    console.log(userId)
+    return userId;
+  } catch (error) {
+    console.error(error);
+    throw new Error(`Failed to fetch user IDs: ${error}`);
+  }
+};
+export const fetchActivityIds = async (token) => {
+  try {
+    const response = await fetch(`${BASE_URL}/routines`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    const data = await response.json();
+    const routineActivityIds = data.flatMap(routine => routine.activities.map(activity => activity.routineActivityId));
+    console.log(routineActivityIds);
   } catch (error) {
     console.log(error);
-    throw new Error(`Failed to fetch activity IDs: ${error}`);
+    throw new Error(`Failed to fetch routine activity IDs: ${error}`);
   }
 };
 
+ 
 
 export const attachActivityToRoutine = async (routineId, activityId, count, duration, token) => {
   try {
@@ -185,4 +182,22 @@ export const attachActivityToRoutine = async (routineId, activityId, count, dura
   } 
 };
 
-
+export const postActivity = async (token, name, description)=>{
+    try {
+      const response = await fetch(`${BASE_URL}/activities`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ name, description }),
+      });
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(`Failed to create activity: ${error}`);
+    }
+  };
+ 
