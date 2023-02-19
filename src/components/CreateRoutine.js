@@ -8,7 +8,7 @@ const CreateRoutine = ({ token }) => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     try {
-      const data = await postRoutine(token, name, goal);
+      const data = await postRoutine( name, goal);
       console.log('data:', data);
     } catch (error) {
       console.error(error);

@@ -8,6 +8,7 @@ export const fetchAllRoutines = async () => {
       },
     });
     const data = await response.json();
+    console.log(data)
     return data;
   } catch (error) {
     console.log(error);
@@ -113,7 +114,7 @@ export const fetchAllPublicRoutinesForAUser = async (username) => {
       },
     });
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     return data;
   } catch (error) {
     console.log(error);
@@ -121,6 +122,44 @@ export const fetchAllPublicRoutinesForAUser = async (username) => {
   }
 };
 
+
+
+export const fetchUserId = async (token) => {
+  try {
+    const response = await fetch(`${BASE_URL}/routines`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const users = await response.json();
+    const Ids = users.map(user => user.id);
+    console.log(Ids);
+    return Ids;
+  } catch (error) {
+    console.log(error);
+    throw new Error(`Failed to fetch userIDs: ${error}`);
+  }
+};
+ 
+export const fetchActivityIds = async (token) => {
+  try {
+    const response = await fetch(`${BASE_URL}/activities`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    console.log(data)
+    const activityIds = data.map((activity) => activity.id);
+
+    return activityIds;
+  } catch (error) {
+    console.log(error);
+    throw new Error(`Failed to fetch activity IDs: ${error}`);
+  }
+};
 
 
 export const attachActivityToRoutine = async (routineId, activityId, count, duration, token) => {
@@ -133,14 +172,17 @@ export const attachActivityToRoutine = async (routineId, activityId, count, dura
       },
       body: JSON.stringify({
         activityId: activityId,
-        count: count,
+        count: count, 
         duration: duration,
       })
     });
     const data = await response.json();
+    console.log(data)
     return data;
   } catch (error) {
     console.log(error);
     throw new Error(`Failed to attach activity to routine: ${error}`);
   } 
 };
+
+

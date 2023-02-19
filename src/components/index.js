@@ -7,3 +7,4 @@ export { default as Home } from "./Home"
 export { default as Register } from './Register';
 export { default as UpdateRoutines } from "./UpdateRoutines"
 export {default as UserRoutines } from "./UserRoutines" 
+export {default as UpdateActivities } from "./UpdateActivities" 

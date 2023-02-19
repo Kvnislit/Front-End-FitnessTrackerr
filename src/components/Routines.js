@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react'
-import { CreateRoutines, UpdateRoutines, UserRoutines, Activities } from '../components';
+import { Activities, CreateRoutines, UpdateRoutines, UserRoutines,  } from '../components';
 import { fetchAllRoutines, exchangeTokenForUser } from '../api';
 
 
-export default function Routines() {
+export default function Routines(activities) {
+  
   const [routines, setRoutines] = useState([]);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [routineId, setRoutineId] = useState(null);
-  console.log(routines)
+  console.log(routineId)
+
   useEffect(() => {
     const token = window.localStorage.getItem('token');
     if (token) {
