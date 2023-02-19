@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import { CreateRoutines, UpdateRoutines, UserRoutines } from '../components';
+import { CreateRoutines, UpdateRoutines, UserRoutines, Activities } from '../components';
 import { fetchAllRoutines, exchangeTokenForUser } from '../api';
+
 
 export default function Routines() {
   const [routines, setRoutines] = useState([]);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [routineId, setRoutineId] = useState(null);
-  
+  console.log(routines)
   useEffect(() => {
     const token = window.localStorage.getItem('token');
     if (token) {
@@ -41,6 +42,7 @@ export default function Routines() {
     }
   }
 
+
   return (
     <div id="routine-container">
       <title>Routines</title>
@@ -48,6 +50,7 @@ export default function Routines() {
       <UpdateRoutines routines={routines} setRoutines={setRoutines} user={user} token={token} 
       setRoutineId={setRoutineId} routineId={routineId} handleDelete={handleDelete} />
       <UserRoutines user={user} routines={routines} />
+  
       <h2>({routines.length})</h2>
       <ul>
         {routines.map((routine) => {
@@ -68,6 +71,7 @@ export default function Routines() {
           );
         })}
       </ul>
+
     </div>
   );
 }

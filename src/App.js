@@ -10,7 +10,7 @@ import {
   UpdateRoutines,
   UserRoutines
 } from "./components";
-import { fetchActivities, fetchAllRoutines, exchangeTokenForUser, attachActivityToRoutine } from "./api";
+import { fetchActivities, fetchAllRoutines, exchangeTokenForUser, } from "./api";
 
 
 const App = () => {
@@ -34,6 +34,8 @@ const App = () => {
     fetchActivities(token)
       .then((activities) => setActivities(activities))
       .catch((error) => console.error("Failed to fetch activities:", error));
+
+
   }, []);
 
 
@@ -49,8 +51,8 @@ const App = () => {
         <Route path="/Home" element={<Home />} />
         <Route path="/login" element={<Login exchangeTokenForUser={exchangeTokenForUser} setUser={setUser} setToken={setToken} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/routines" element={<Routines token={token} routines={routines} setRoutines={setRoutines}  />} />
-        <Route path="/activities" element={<Activities />} />
+        <Route path="/routines" element={<Routines token={token} routines={routines} setRoutines={setRoutines} />} />
+        <Route path="/activities" element={<Activities token={token} activities={activities} />} />
         <Route path="/UserRoutine" element={<UserRoutines  token={token} routines={routines} setRoutines={setRoutines} user={user} />}/>
         <Route path="/routines/update" element={<UpdateRoutines routines={routines} setRoutines={setRoutines} user={user} token={token}  />} />
       </Routes>

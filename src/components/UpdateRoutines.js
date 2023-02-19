@@ -20,12 +20,10 @@ const UpdateRoutines = ({ routines, setRoutines, token, user, routineId, setRout
         isPublic: true
       })
     });
-    if (!response.ok) {
-      throw new Error(`Failed to update routine: ${response.status}`);
-    }
+
     const data = await response.json();
     console.log('data:', data);
-    if(data && data.name, data.goal){
+    if(data && data.name, data.goal, data.isPublic){
     const newRoutine = routines.map(routine => {
       if (routine.id === routineId) {
         return data;

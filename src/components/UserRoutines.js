@@ -12,19 +12,20 @@ useEffect(() => {
   }
 }, [token, user]);
 
-  // Check if user exists before rendering
+
   if (!user) {
     return null;
   }
-
+console.log(user)
   return (
     <div id="user-routines-container">
       <h2>{`Public Routines for User ${user.username}`}</h2>
       <ul>
-        {publicRoutines.map(routine => (
+        {publicRoutines.map((routine) => (
           <li key={routine.id}>
             <h3>{routine.name}</h3>
-            <p>{routine.goal}</p>
+            <p>Goal:{routine.goal}</p>
+            <p>Activities:{routine.activities}</p>
           </li>
         ))}
       </ul>

@@ -122,23 +122,8 @@ export const fetchAllPublicRoutinesForAUser = async (username) => {
 };
 
 
-export const deleteRoutine = async (routineId, token) => {
-  try {
-    const response = await fetch(`${BASE_URL}/routines/${routineId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-};
 
-export const attachActivityToRoutine = async (routineId, token, activityId, count, duration) => {
+export const attachActivityToRoutine = async (routineId, activityId, count, duration, token) => {
   try {
     const response = await fetch(`${BASE_URL}/routines/${routineId}/activities`, {
       method: 'POST',
@@ -150,13 +135,12 @@ export const attachActivityToRoutine = async (routineId, token, activityId, coun
         activityId: activityId,
         count: count,
         duration: duration,
-      }),
+      })
     });
     const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);
     throw new Error(`Failed to attach activity to routine: ${error}`);
-  }
+  } 
 };
-
