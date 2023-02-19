@@ -18,7 +18,7 @@ export default function ActivitiesDisplay({ token , activities, setActivities })
 
   return (
     <div id="routine-details-container">
-      <h2>Routine ActivitiesDisplay</h2>
+      <title>Activities</title>
       <CreateActivity token={token}/>
       <UpdateActivities token={token} activityIds={activityIds} setActivities={setActivities} />
       <ul>

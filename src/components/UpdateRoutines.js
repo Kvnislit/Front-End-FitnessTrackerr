@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-const UpdateRoutines = ({ routines, setRoutines, token, user, routineId, setRoutineId, handleDelete }) => {
+const UpdateRoutines = ({ routines, setRoutines, token, user, setRoutineId, routineId }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
 
-  const handleSubmit = async (ev) => {
+  const handleSubmitForRoutines = async (ev) => {
     ev.preventDefault();
     console.log('name, goal:', name, goal);
-        console.log('routineId:', routineId);
+        console.log('routineId:', user);
     const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`, {
       method: "PATCH",
       headers: {
@@ -40,7 +40,7 @@ const UpdateRoutines = ({ routines, setRoutines, token, user, routineId, setRout
   }
 
   return <>
-    <form className="update" onSubmit={handleSubmit}>
+    <form className="update" onSubmit={handleSubmitForRoutines}>
       <h2>Edit Routine</h2>
       <input type="text" placeholder="edit name" value={name} onChange={(ev) => setName(ev.target.value)} />
       <input type="text" placeholder="edit goal" value={goal} onChange={(ev) => setGoal(ev.target.value)} />

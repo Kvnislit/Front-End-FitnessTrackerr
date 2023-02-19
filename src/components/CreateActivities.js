@@ -5,7 +5,7 @@ const CreateActivity = ({ token }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = async (ev) => {
+  const handleCreateForActivity = async (ev) => {
     ev.preventDefault();
     try {
       const data = await postActivity(token, name, description);
@@ -16,7 +16,7 @@ const CreateActivity = ({ token }) => {
   };
 
   return (
-    <form className='update' onSubmit={handleSubmit}>
+    <form className='update' onSubmit={handleCreateForActivity}>
       <h2>Create Activity</h2>
       <input
         className="input-btn"

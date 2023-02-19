@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { loginUser } from "../api/index";
+import Register from "./Register";
 
 const Login = (props) => {
   const exchangeTokenForUser = props.exchangeTokenForUser;
@@ -44,7 +45,12 @@ const Login = (props) => {
       />
 
       <button className="LoginIn">Login</button>
+      <div>
+      </div>
     </form>
+    
+      
+    
   );
 };
 

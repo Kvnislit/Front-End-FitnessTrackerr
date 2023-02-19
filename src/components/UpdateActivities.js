@@ -6,7 +6,7 @@ const UpdateActivities = ({ token, activityIds }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = async (ev) => {
+  const handleEditActivity = async (ev) => {
     ev.preventDefault();
     const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/activities/${activityIds}`, {
       method: "PATCH",
@@ -27,7 +27,7 @@ const UpdateActivities = ({ token, activityIds }) => {
   }
 
   return (
-    <form className="update" onSubmit={handleSubmit}>
+    <form className="update" onSubmit={handleEditActivity}>
       <h2>Edit Activity</h2>
       <input type="text" placeholder="edit name" value={name} onChange={(ev) => setName(ev.target.value)} />
       <input type="text" placeholder="edit description" value={description} onChange={(ev) => setDescription(ev.target.value)} />

@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { postRoutine } from '../api';
+import { postRoutine, fetchAllRoutines } from '../api';
 
-const CreateRoutine = ({ token }) => {
+const CreateRoutine = ({ token , setRoutines }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
 
-  const handleSubmit = async (ev) => {
+  const handleSubmitForRoutines = async (ev) => {
     ev.preventDefault();
     try {
       const data = await postRoutine(token, name, goal);
       console.log('data:', data);
+      const routines = await fetchAllRoutines();
+      setRoutines(routines);
+      setName('');
+      setGoal('');
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <form className='update' onSubmit={handleSubmit}>
+    <form className='update' onSubmit={handleSubmitForRoutines}>
       <h2>Create Routine</h2>
       <input
         className="input-btn"

@@ -19,13 +19,13 @@ useEffect(() => {
 console.log(user)
   return (
     <div id="user-routines-container">
-      <h2>{`Public Routines for User ${user.username}`}</h2>
+      <h1>{`Routines for ${user.username}`}</h1>
       <ul>
         {myRoutines.map((routine) => (
           <li key={routine.id}>
-            <h3>Name:{routine.name}</h3>
-            <p>Goal:{routine.goal}</p>
-            <p>Activities:{routine.activities}</p>
+            <h2>Name:{routine.name}</h2>
+            <h2>Goal:{routine.goal}</h2>
+            <h2>Activities:{routine.activities}</h2>
           </li>
         ))}
       </ul>

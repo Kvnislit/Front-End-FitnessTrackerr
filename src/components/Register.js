@@ -5,7 +5,7 @@ const Register = () => {
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
 
-  const register = async (ev) => {
+  const registerSubmit = async (ev) => {
     ev.preventDefault();
     try {
       const result = await registerUser(registerUsername, registerPassword);
@@ -16,7 +16,7 @@ const Register = () => {
   }
 
   return (
-    <form className="register" onSubmit={register}>
+    <form className="registerSubmit" onSubmit={registerSubmit}>
       <h1 className="registerIn">Please register here!</h1>
       <input
       className="registerIn"
