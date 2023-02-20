@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const NavBar = ({user, logout}) => {
+export default function NavBar({ user, logout }) {
   useEffect(() => {
     const menu = document.querySelector('#menu-icon');
     const navbar = document.querySelector('.navbar');
@@ -40,7 +40,7 @@ const NavBar = ({user, logout}) => {
         </nav>
 
         <div className="header-btn">
-        {user.id ? (
+          {user.id ? (
             <div className='welcome'>
               Welcome {user.username} <button onClick={logout}>Logout</button>
             </div>
@@ -54,6 +54,4 @@ const NavBar = ({user, logout}) => {
       </header>
     </section>
   );
-};
-
-export default NavBar;
+}
