@@ -58,6 +58,7 @@ const App = () => {
       <Routes>
       <Route path="/UpdateActivities" element={<UpdateActivities user={user} token={token} activities={activities} setActivities={setActivities} routines={routines} setRoutines={setRoutines} />} />
       <Route path="/" element={<Home />} />
+      <Route path="/NavBar" element={<NavBar />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/CreateActivity" element={<CreateActivity token={token} handleAddRoutine={handleAddRoutine} />} />
         <Route path="/Login" element={<Login exchangeTokenForUser={exchangeTokenForUser} setUser={setUser} setToken={setToken} />} />
@@ -65,6 +66,7 @@ const App = () => {
         <Route path="/Routines" element={<Routines userId={userId} token={token} routines={routines} setRoutines={setRoutines} activities={activities} setActivities={setActivities} />} />
         <Route path="/Activities" element={<ActivitiesDisplay token={token} activities={activities} setActivities={setActivities} routines={routines} setRoutines={setRoutines}/>} />
         <Route path="/UserRoutine" element={<UserRoutines  token={token} routines={routines} setRoutines={setRoutines} user={user} />}/>
+        
         <Route path="/UpdateRoutines" element={<UpdateRoutines routines={routines} setRoutines={setRoutines} userId={userId} user={user} token={token}  />} />
       </Routes>
     </BrowserRouter>
