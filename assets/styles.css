@@ -141,11 +141,35 @@ title{
   cursor: pointer;
 }
 /*========== Routine name click ==========*/
+.key{
+  margin: 4rem;
+}
+.routineBox {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  background-color: lightgray;
+}
+
+.routineBox h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.routineBox p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.routineBox button {
+  margin: 10px 10px 10px 0;
+}
 .singleRoutine {
   border: 1px solid black
 }
 .myRoutine {
-  background-color: #4917ed;
+  background-color: #ffa323;
+  color:#808080;
 }
 #HomePage{
   border: 5px solid black;

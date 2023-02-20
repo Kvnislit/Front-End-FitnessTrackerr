@@ -56,7 +56,7 @@ export default function Routines() {
       return [...acc, routine];
     }
   }, []).reverse();
-  
+
   return (
     <div id="routine-container">
       <title>Routines</title>
@@ -79,33 +79,32 @@ export default function Routines() {
             user && routine.creatorId === user.id
               ? "singleRoutine myRoutine"
               : "singleRoutine";
-  
+
           return (
             <li key={routine.id} className={className}>
-              <h1>{routine.name}</h1>
-              <p>Goal:{routine.goal}</p>
-              <p>
-                <u>Name:</u>
-                {routine.creatorName}
-              </p>
-              {user && routine.creatorId === user.id ? (
-                <>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary"
-                    onClick={() => handleEdit(routine.id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary"
-                    onClick={() => handleDelete(routine.id)}
-                  >
-                    Delete
-                  </button>
-                </>
-              ) : null}
+              <div className='routineBox'>
+                <h1>{routine.name}</h1>
+                <p>Goal: {routine.goal}</p>
+                <p><u>Name:</u> {routine.creatorName}</p>
+                {user && routine.creatorId === user.id ? (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={() => handleEdit(routine.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={() => handleDelete(routine.id)}
+                    >
+                      Delete
+                    </button>
+                  </>
+                ) : null}
+              </div>
             </li>
           );
         })}
