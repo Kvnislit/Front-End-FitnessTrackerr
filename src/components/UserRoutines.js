@@ -19,8 +19,8 @@ useEffect(() => {
 console.log(user)
   return (
     <div id="user-routines-container">
-      <h1>{`Routines for ${user.username}`}</h1>
       <ul>
+      <title>{`Routines for ${user.username}`}</title>
         {myRoutines.map((routine) => (
           <li key={routine.id}>
             <h2>Name:{routine.name}</h2>

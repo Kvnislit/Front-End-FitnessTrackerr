@@ -4,6 +4,8 @@ import Register from "./Register";
 
 const Login = (props) => {
   const exchangeTokenForUser = props.exchangeTokenForUser;
+  const setToken = props.setToken
+  const setUser = props.setUser
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -11,7 +13,7 @@ const Login = (props) => {
     ev.preventDefault();
     loginUser(loginUsername, loginPassword)
       .then((token) => {
-        exchangeTokenForUser(props.setToken, props.setUser);
+        exchangeTokenForUser(setToken, setUser);
         fetch("http://fitnesstrac-kr.herokuapp.com/api/users/me", {
           headers: {
             "Content-Type": "application/json",

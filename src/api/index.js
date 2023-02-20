@@ -141,20 +141,21 @@ export const fetchUserId = async (token) => {
 };
 export const fetchActivityIds = async (token) => {
   try {
-    const response = await fetch(`${BASE_URL}/routines`, {
+    const response = await fetch(`${BASE_URL}/activities`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
     });
     const data = await response.json();
-    const routineActivityIds = data.flatMap(routine => routine.activities.map(activity => activity.routineActivityId));
-   return routineActivityIds;
+    const activityIds = data.id
+    return activityIds;
   } catch (error) {
     console.log(error);
-    throw new Error(`Failed to fetch routine activity IDs: ${error}`);
+    throw new Error(`Failed to fetch activity IDs: ${error}`);
   }
 };
+
 
  
 

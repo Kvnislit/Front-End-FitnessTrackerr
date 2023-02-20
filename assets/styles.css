@@ -31,7 +31,6 @@ header{
   justify-content: space-between;
   padding: 35px 15%;
   background: transparent;
-  border: 2px solid black;
 }
 .logo {
   color: #fff;
@@ -169,7 +168,7 @@ title{
 }
 .myRoutine {
   background-color: #ffa323;
-  color:#808080;
+  color:#000000;
 }
 #HomePage{
   border: 5px solid black;
