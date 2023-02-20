@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-const UpdateRoutines = ({ routines, setRoutines, token, user, setRoutineId, routineId }) => {
+const UpdateRoutines = ({ routines, setRoutines, token, user, routineId, setRoutineId }) => {
   const [name, setName] = useState('');
   const [goal, setGoal] = useState('');
 
   const handleSubmitForRoutines = async (ev) => {
     ev.preventDefault();
     console.log('name, goal:', name, goal);
-        console.log('routineId:', user);
+    console.log('routineId:', user);
     const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`, {
       method: "PATCH",
       headers: {
@@ -23,23 +23,23 @@ const UpdateRoutines = ({ routines, setRoutines, token, user, setRoutineId, rout
 
     const data = await response.json();
     console.log('data:', data);
-    if(data && data.name, data.goal, data.isPublic){
-    const newRoutine = routines.map(routine => {
-      if (routine.id === routineId) {
-        return data;
-      } else {
-        return routine;
-      }
-    });
+    if (data && data.name, data.goal, data.isPublic) {
+      const newRoutine = routines.map(routine => {
+        if (routine.id === routineId) {
+          return data;
+        } else {
+          return routine;
+        }
+      });
   
-    setRoutines(newRoutine);
-    setRoutineId(null);
-    setName('');
-    setGoal('');
-  };
+      setRoutines(newRoutine);
+      setRoutineId(null);
+      setName('');
+      setGoal('');
+    }
   }
 
-  return <>
+  return (
     <form className="update" onSubmit={handleSubmitForRoutines}>
       <h2>Edit Routine</h2>
       <input type="text" placeholder="edit name" value={name} onChange={(ev) => setName(ev.target.value)} />
@@ -48,7 +48,7 @@ const UpdateRoutines = ({ routines, setRoutines, token, user, setRoutineId, rout
         Submit
       </button>
     </form>
-  </>
+  );
 };
 
 export default UpdateRoutines;
