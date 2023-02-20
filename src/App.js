@@ -59,7 +59,7 @@ const App = () => {
       <Route path="/UpdateActivities" element={<UpdateActivities user={user} token={token} activities={activities} setActivities={setActivities} routines={routines} setRoutines={setRoutines} />} />
       <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
-        <Route path="/CreateActivity" handleAddRoutine={handleAddRoutine}element={<CreateActivity token={token} />} />
+        <Route path="/CreateActivity" element={<CreateActivity token={token} handleAddRoutine={handleAddRoutine} />} />
         <Route path="/Login" element={<Login exchangeTokenForUser={exchangeTokenForUser} setUser={setUser} setToken={setToken} />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Routines" element={<Routines userId={userId} token={token} routines={routines} setRoutines={setRoutines} activities={activities} setActivities={setActivities} />} />
